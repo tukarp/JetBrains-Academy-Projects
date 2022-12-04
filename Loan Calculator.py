@@ -16,35 +16,45 @@ def create_parser():
     parser.add_argument('--periods', help="Count of months", type=int)
     parser.add_argument('--interest', help="Credit interest (rate of interest)", type=float)
     args = parser.parse_args()
+    args_list = [args.type, args.payment, args.principal, args.periods, args.interest]
+
+    # checking parameters
+    count_list = 0
+    for i in args_list:
+        if i is None:
+            count_list += 1
+            if count_list > 1:
+                print("Incorrect Parameters")
+                exit(0)
+    if (args_list[1] is not None) and ((args_list[1] < 0) or (args_list[2] is not None)) and \
+            ((args_list[2] < 0) or (args_list[3] is not None)) and \
+            ((args_list[3] < 0) or (args_list[4] is not None)) and (args_list[4] < 0.0):
+        print("Incorrect Parameters")
+        exit(0)
 
     # checking conditions to choose function
-    if args.type == "diff" and args.payment is not None:
-        print("Incorrect parameters")
-        exit(0)
-    elif args.type not in ["annuity", "diff"]:
-        print("Incorrect parameters")
-        exit(0)
-    else:
-        # case for annuity payments
-        if args.type == "annuity":
-            # case for m
-            if(args.principal is not None) and (args.payment is not None) and (args.interest is not None):
-                number_of_monthly_payments_calculator(args.principal, args.payment, args.interest)
-            # case for p
-            elif(args.payment is not None) and (args.periods is not None) and (args.interest is not None):
-                loan_principal_calculator(args.payment, args.periods, args.interest)
-            # case for a
-            elif(args.principal is not None) and (args.periods is not None) and (args.interest is not None):
-                annuity_monthly_payment_calculator(args.principal, args.periods, args.interest)
-            else:
-                print("Incorrect parameters")
-        # case for differentiated payments
+    # case for annuity payments
+    if args.type == "annuity":
+        # case for m
+        if(args.principal is not None) and (args.payment is not None) and (args.interest is not None):
+            number_of_monthly_payments_calculator(args.principal, args.payment, args.interest)
+        # case for p
+        elif(args.payment is not None) and (args.periods is not None) and (args.interest is not None):
+            loan_principal_calculator(args.payment, args.periods, args.interest)
+        # case for a
+        elif(args.principal is not None) and (args.periods is not None) and (args.interest is not None):
+            annuity_monthly_payment_calculator(args.principal, args.periods, args.interest)
         else:
-            # case for d
-            if(args.principal is not None) and (args.periods is not None) and (args.interest is not None):
-                differentiated_payments_calculator(args.principal, args.periods, args.interest)
-            else:
-                print("Incorrect parameters")
+            print("Incorrect parameters")
+    # case for differentiated payments
+    elif args.type == "diff":
+        # case for d
+        if(args.principal is not None) and (args.periods is not None) and (args.interest is not None):
+            differentiated_payments_calculator(args.principal, args.periods, args.interest)
+        else:
+            print("Incorrect parameters")
+    else:
+        print("Incorrect parameters")
 
 
 # program loop
@@ -145,8 +155,8 @@ def number_of_monthly_payments_calculator(loan_principal, monthly_payment, loan_
 # annuity monthly payment calculator
 def annuity_monthly_payment_calculator(loan_principal, periods, loan_interest):
     # calculating payment for every month
-    annuity_payment = math.ceil(loan_principal * ((loan_interest * math.pow((1 + loan_interest), periods)) / (
-                math.pow((1 + loan_interest), periods) - 1)))
+    annuity_payment = math.ceil(loan_principal * ((loan_interest * math.pow((1 + loan_interest), periods)) /
+        (math.pow((1 + loan_interest), periods) - 1)))
 
     # calculating overpayment
     overpayment = get_overpayment(annuity_payment * periods, loan_principal)
@@ -159,8 +169,8 @@ def annuity_monthly_payment_calculator(loan_principal, periods, loan_interest):
 # calculating loan principal
 def loan_principal_calculator(annuity_payment, periods, loan_interest):
     # calculating loan principal
-    loan_principal = math.floor(annuity_payment / ((loan_interest * math.pow((1 + loan_interest), periods)) / (
-                math.pow((1 + loan_interest), periods) - 1)))
+    loan_principal = math.floor(annuity_payment / ((loan_interest * math.pow((1 + loan_interest), periods)) /
+        (math.pow((1 + loan_interest), periods) - 1)))
 
     # calculating overpayment
     overpayment = get_overpayment(annuity_payment * periods, loan_principal)
@@ -175,8 +185,8 @@ def differentiated_payments_calculator(loan_principal, periods, loan_interest):
     overpayment = 0
     month_counter = 1
     while month_counter < (periods + 1):
-        differentiated_monthly_payment = math.ceil((loan_principal / periods) + (loan_interest * (loan_principal - (
-                    loan_principal * (month_counter - 1) / periods))))
+        differentiated_monthly_payment = math.ceil((loan_principal / periods) + (loan_interest *
+            (loan_principal - (loan_principal * (month_counter - 1) / periods))))
         # printing payments for every month
         print(f"Month {month_counter}: payment is {differentiated_monthly_payment}")
         overpayment += differentiated_monthly_payment
@@ -188,5 +198,5 @@ def differentiated_payments_calculator(loan_principal, periods, loan_interest):
 
 
 # starting program and choosing program's feature
-# create_parser()
-start_program()
+create_parser()
+# start_program()

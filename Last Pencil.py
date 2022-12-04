@@ -30,30 +30,50 @@ def get_first_player(players_list):
 
 
 # checking if player move is correct
-def move(number_of_pencils):
-    while True:
-        player_move = input()
-        # if number of pencils is digit
-        if player_move.isdigit():
-            # if number of pencils is 1 or 2 or 3
-            if player_move in ("1", "2", "3"):
-                # if number of pencils taken isn't bigger than pencils left
-                if number_of_pencils - int(player_move) >= 0:
-                    return int(player_move)
+def move(number_of_pencils, players_list, player_turn):
+    # player move
+    if player_turn == 0:
+        while True:
+            player_move = input()
+            # if number of pencils is digit
+            if player_move.isdigit():
+                # if number of pencils is 1 or 2 or 3
+                if player_move in ("1", "2", "3"):
+                    # if number of pencils taken isn't bigger than pencils left
+                    if number_of_pencils - int(player_move) >= 0:
+                        return int(player_move)
+                    else:
+                        print("Too many pencils were taken")
                 else:
-                    print("Too many pencils were taken")
+                    print("Possible values: '1', '2' or '3'")
             else:
                 print("Possible values: '1', '2' or '3'")
+    # bot move
+    else:
+        # bot strategies for winning
+        bot_move = 0
+        if number_of_pencils > 5:
+            print(f"{players_list[player_turn]}'s turn: ")
+            if number_of_pencils % 4 == 0:
+                bot_move = 3
+            elif number_of_pencils % 4 == 3:
+                bot_move = 2
+            elif number_of_pencils % 4 == 2:
+                bot_move = 1
+            print(bot_move)
+            return int(bot_move)
         else:
-            print("Possible values: '1', '2' or '3'")
+            if number_of_pencils == 5:
+                print("2 for Jack \n" + "1 for Jack's move \n" + "1 for game-results")
+                quit()
 
 
 # game loop
-def game(number_of_pencils, player_turn, players_list):
+def game(number_of_pencils, players_list, player_turn):
     while number_of_pencils > 0:
         print("|" * number_of_pencils)
         print(f"{players_list[player_turn]}'s turn: ")
-        number_of_pencils -= min(number_of_pencils, move(number_of_pencils))
+        number_of_pencils -= move(number_of_pencils, players_list, player_turn)
         player_turn ^= 1
     print(f"{players_list[player_turn]} won!")
 
@@ -71,4 +91,4 @@ print(f"Who will be the first ({players[0]}, {players[1]}): ")
 turn = get_first_player(players)
 
 # game
-game(pencils, turn, players)
+game(pencils, players, turn)
