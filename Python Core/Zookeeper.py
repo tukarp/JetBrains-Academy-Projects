@@ -1,4 +1,5 @@
 # My solution to JetBrains Academy Zookeeper Project
+# Made by github.com/tukarp
 
 
 # Animals
