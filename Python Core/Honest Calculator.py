@@ -1,4 +1,5 @@
 # My solution to JetBrains Academy Honest Calculator Project
+# Made by github.com/tukarp
 
 
 msg_0 = "Enter an equation \n"
