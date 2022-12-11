@@ -1,4 +1,5 @@
 # My solution to JetBrains Academy Simple Tic-Tac-Toe Project
+# Made by github.com/tukarp
 
 
 # building grid
