@@ -1,4 +1,5 @@
 # My solution to JetBrains Academy Simple Chatty Bot Project
+# Made by github.com/tukarp
 
 
 def greet(bot_name, birth_year):
