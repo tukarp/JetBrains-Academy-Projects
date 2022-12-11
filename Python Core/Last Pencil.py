@@ -1,4 +1,5 @@
 # My solution to JetBrains Academy Last Pencil Project
+# Made by github.com/tukarp
 
 
 # getting the number of pencils
