@@ -1,4 +1,5 @@
 # My solution to JetBrains Academy Loan Calculator Project
+# Made by github.com/tukarp
 
 
 import math
