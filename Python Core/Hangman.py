@@ -205,7 +205,6 @@ def game():
         # case for checking if player already guessed this letter
         elif guess in guesses_list:
             print("You've already guessed this letter!")
-            attempts -= 1
         else:
             # case for guessing wrong letter
             print("That letter doesn't appear in the word!")
