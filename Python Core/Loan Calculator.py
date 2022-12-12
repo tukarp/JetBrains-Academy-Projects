@@ -105,7 +105,6 @@ def get_loan_principal():
 # getting loan interest
 def get_loan_interest():
     loan_interest = float(input("Enter the loan interest: \n"))
-    loan_interest = ((loan_interest / 12) / 100)
     return loan_interest
 
 
@@ -121,7 +120,16 @@ def get_overpayment(paid, loan_principal):
     return int(overpayment)
 
 
+# calculating loan interest
+def calculate_loan_interest(loan_interest):
+    loan_interest = ((loan_interest / 12) / 100)
+    return loan_interest
+
+
 def number_of_monthly_payments_calculator(loan_principal, monthly_payment, loan_interest):
+    # calculating loan interest
+    loan_interest = calculate_loan_interest(loan_interest)
+
     # calculating months to repay the loan and rounding the result
     months_to_repay = math.ceil(
         math.log((monthly_payment / (monthly_payment - (loan_interest * loan_principal))), 1 + loan_interest))
@@ -155,6 +163,9 @@ def number_of_monthly_payments_calculator(loan_principal, monthly_payment, loan_
 
 # annuity monthly payment calculator
 def annuity_monthly_payment_calculator(loan_principal, periods, loan_interest):
+    # calculating loan interest
+    loan_interest = calculate_loan_interest(loan_interest)
+
     # calculating payment for every month
     annuity_payment = math.ceil(loan_principal * ((loan_interest * math.pow((1 + loan_interest), periods)) /
         (math.pow((1 + loan_interest), periods) - 1)))
@@ -169,6 +180,9 @@ def annuity_monthly_payment_calculator(loan_principal, periods, loan_interest):
 
 # calculating loan principal
 def loan_principal_calculator(annuity_payment, periods, loan_interest):
+    # calculating loan interest
+    loan_interest = calculate_loan_interest(loan_interest)
+
     # calculating loan principal
     loan_principal = math.floor(annuity_payment / ((loan_interest * math.pow((1 + loan_interest), periods)) /
         (math.pow((1 + loan_interest), periods) - 1)))
@@ -183,6 +197,10 @@ def loan_principal_calculator(annuity_payment, periods, loan_interest):
 
 # calculating differentiated payments
 def differentiated_payments_calculator(loan_principal, periods, loan_interest):
+    # calculating loan interest
+    loan_interest = calculate_loan_interest(loan_interest)
+
+    # counters
     overpayment = 0
     month_counter = 1
     while month_counter < (periods + 1):
@@ -199,5 +217,5 @@ def differentiated_payments_calculator(loan_principal, periods, loan_interest):
 
 
 # starting program and choosing program's feature
-create_parser()
-# start_program()
+# create_parser()
+start_program()
