@@ -104,7 +104,7 @@ def print_hangman(attempts):
 
 # player choosing category for game
 def choose_category():
-    print("Choose category: fruits, vegetables, animals, car_brands, countries")
+    print("Choose category: fruits, vegetables, animals, car_brands, countries: ")
     while True:
         user_input = input()
 
