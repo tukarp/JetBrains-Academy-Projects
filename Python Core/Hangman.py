@@ -182,6 +182,9 @@ def game():
         # printing hangman
         print_hangman(attempts)
 
+        # printing length of the word
+        print(f"Length of the word is {len(guessing_word)}")
+
         # printing previous guesses
         if len(guesses_list) > 0:
             print(f"Previous guesses: {guesses_list}")
