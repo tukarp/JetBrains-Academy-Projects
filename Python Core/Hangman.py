@@ -135,13 +135,12 @@ def game():
     # vegetables list
     vegetables = ["potato", "tomato", "onion", "carrot", "beetroot",
                   "broccoli", "cucumber", "salad", "lettuce", "celery", "mushroom",
-                  "corn", "garlic", "spinach", "bean", "cabbage", "peas",
-                  "green onion", "cauliflower", "asparagus"]
+                  "corn", "garlic", "spinach", "bean", "cabbage", "peas", "green onion",
+                  "cauliflower", "asparagus"]
     # animals list
     animals = ["cat", "dog", "rabbit", "horse", "chicken", "pig", "cow"
-                                                                  "sheep", "bird", "parrot", "frog", "spider", "bear",
-               "snake", "hamster",
-               "monkey", "lion", "zebra", "shark", "fish"]
+               "sheep", "bird", "parrot", "frog", "spider", "bear", "snake", 
+               "hamster", "monkey", "lion", "zebra", "shark", "fish"]
     # car brands list
     car_brands = ["chevrolet", "honda", "nissan", "ford", "fiat", "jeep",
                   "volkswagen", "volvo", "jaguar", "audi", "toyota", "tesla", "lexus",
