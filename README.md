@@ -1,6 +1,6 @@
 # JetBrains Academy Projects
 
-This repository features my solutions to JetBrains Academy projects with some additional features.
+## This repository features my solutions to JetBrains Academy projects.
 
 ## Projects
 
